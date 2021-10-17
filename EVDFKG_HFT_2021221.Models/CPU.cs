@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace EVDFKG_HFT_2021221.Models
 {
+    [Table("CPU")]
     public class CPU
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key] //Primary Key
         public int CPUId { get; set; }
         public string Series { get; set; }
@@ -25,15 +25,7 @@ namespace EVDFKG_HFT_2021221.Models
         //-------------------------------------------------------
         // NAVIGATION PROPERTIES
         //-------------------------------------------------------
-
-        public CPU()
-        {
-            this.Motherboards = new HashSet<Motherboard>();
-            this.rams = new HashSet<RAM>();
-        }
         [NotMapped]
-        public virtual ICollection<Motherboard> Motherboards { get; set; }
-        [NotMapped]
-        public virtual ICollection<RAM> rams { get; set; }
+        public virtual IList<Combo> Combos { get; set; }
     }
 }

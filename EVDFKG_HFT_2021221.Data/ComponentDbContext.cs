@@ -32,6 +32,9 @@ namespace EVDFKG_HFT_2021221.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Combo>().HasKey(com => new { com.MotherboardId, com.CPUId, com.RAMId });
+
+
             Motherboard motherboard1 = new Motherboard()
             {
                 MotherboardId = 1,
@@ -66,6 +69,21 @@ namespace EVDFKG_HFT_2021221.Data
                 CASLatency ="C16",
                 PartNumber = "CMK16GX4M2B3200C16",
             };
+
+            modelBuilder.Entity<Combo>()
+                .HasOne<Motherboard>(co => co.Motherboard)
+                .WithMany(m => m.Combos)
+                .HasForeignKey(co => co.MotherboardId);
+
+            modelBuilder.Entity<Combo>()
+            .HasOne<RAM>(co => co.RAM)
+            .WithMany(m => m.Combos)
+            .HasForeignKey(co => co.RAMId);
+
+            modelBuilder.Entity<Combo>()
+            .HasOne<CPU>(co => co.CPU)
+            .WithMany(m => m.Combos)
+            .HasForeignKey(co => co.CPUId);
         }
     }
 }

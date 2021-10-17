@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace EVDFKG_HFT_2021221.Models
 {
+    [Table("RAM")]
     public class RAM
     {
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key] //Primary Key
         public int RAMId { get; set; }
         public string Series { get; set; }
@@ -26,15 +26,7 @@ namespace EVDFKG_HFT_2021221.Models
         //-------------------------------------------------------
         // NAVIGATION PROPERTIES
         //-------------------------------------------------------
-
-        public RAM()
-        {
-            this.Motherboards = new HashSet<Motherboard>();
-            this.cpus = new HashSet<CPU>();
-        }
         [NotMapped]
-        public virtual ICollection<Motherboard> Motherboards { get; set; }
-        [NotMapped]
-        public virtual ICollection<CPU> cpus { get; set; }
+        public virtual IList<Combo> Combos { get; set; }
     }
 }
