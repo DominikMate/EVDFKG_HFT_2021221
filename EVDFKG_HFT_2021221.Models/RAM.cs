@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace EVDFKG_HFT_2021221.Models
 {
+    [Table("RAMs")]
     public class RAM
     {
         [Key] //Primary Key
