@@ -27,6 +27,7 @@ namespace EVDFKG_HFT_2021221.Data
                 optionsBuilder
                     .UseLazyLoadingProxies()
                     .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\LocalDB.mdf;Integrated Security=True");
+                //Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\domin\source\repos\EVDFKG_HFT_2021221\EVDFKG_HFT_2021221.Data\LocalDB.mdf;Integrated Security=True
             }
         }
 
@@ -69,6 +70,12 @@ namespace EVDFKG_HFT_2021221.Data
                 CASLatency ="C16",
                 PartNumber = "CMK16GX4M2B3200C16",
             };
+            Combo combo1 =new Combo
+            {
+                MotherboardId=1,
+                CPUId=1,
+                RAMId=1
+            };
 
             modelBuilder.Entity<Combo>()
                 .HasOne<Motherboard>(co => co.Motherboard)
@@ -84,6 +91,11 @@ namespace EVDFKG_HFT_2021221.Data
             .HasOne<CPU>(co => co.CPU)
             .WithMany(m => m.Combos)
             .HasForeignKey(co => co.CPUId);
+
+            modelBuilder.Entity<Motherboard>().HasData(motherboard1);
+            modelBuilder.Entity<CPU>().HasData(cpu1);
+            modelBuilder.Entity<RAM>().HasData(ram1);
+            modelBuilder.Entity<Combo>().HasData(combo1);
         }
     }
 }
