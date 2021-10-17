@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EVDFKG_HFT_2021221.Data;
+using System;
 
 namespace EVDFKG_HFT_2021221.Client
 {
@@ -7,6 +8,8 @@ namespace EVDFKG_HFT_2021221.Client
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            ComponentDbContext db = new ComponentDbContext();
+
         }
     }
 }

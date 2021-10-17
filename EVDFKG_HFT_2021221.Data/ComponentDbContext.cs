@@ -13,7 +13,6 @@ namespace EVDFKG_HFT_2021221.Data
         public virtual DbSet<CPU> CPUs { get; set; }
         public virtual DbSet<Motherboard> Motherboards { get; set; }
         public virtual DbSet<RAM> RAMs { get; set; }
-        public virtual DbSet<Combo> Combos { get; set; }
 
         public ComponentDbContext()
         {
@@ -29,6 +28,11 @@ namespace EVDFKG_HFT_2021221.Data
                     .UseLazyLoadingProxies()
                     .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\LocalDB.mdf;Integrated Security=True");
             }
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
         }
     }
 }
