@@ -21,11 +21,19 @@ namespace EVDFKG_HFT_2021221.Models
         public float CPUSpeed { get; set; }
         public string RAMType { get; set; }
 
-        [NotMapped]
+
         //-------------------------------------------------------
         // NAVIGATION PROPERTIES
         //-------------------------------------------------------
-        public RAM ram { get; set; }
-        public Motherboard motherboard { get; set; }
+
+        public CPU()
+        {
+            this.Motherboards = new HashSet<Motherboard>();
+            this.rams = new HashSet<RAM>();
+        }
+        [NotMapped]
+        public virtual ICollection<Motherboard> Motherboards { get; set; }
+        [NotMapped]
+        public virtual ICollection<RAM> rams { get; set; }
     }
 }

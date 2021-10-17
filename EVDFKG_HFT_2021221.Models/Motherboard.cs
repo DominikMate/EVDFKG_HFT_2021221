@@ -10,8 +10,8 @@ namespace EVDFKG_HFT_2021221.Models
 {
     public class Motherboard
     {
-        [Key] //Primary Key
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key] //Primary Key
         public int MotherboardId { get; set; }
         public string Series { get; set; }
         public string Brand { get; set; }
@@ -22,11 +22,19 @@ namespace EVDFKG_HFT_2021221.Models
         public int MAXRAMSpeed { get; set; }
         public string GPUInterface { get; set; }
 
-        [NotMapped]
+
         //-------------------------------------------------------
         // NAVIGATION PROPERTIES
         //-------------------------------------------------------
-        public RAM ram { get; set; }
-        public CPU cpu { get; set; }
+
+        public Motherboard()
+        {
+            this.rams = new HashSet<RAM>();
+            this.cpus= new HashSet<CPU>();
+        }
+        [NotMapped]
+        public virtual ICollection<RAM> rams { get; set; }
+        [NotMapped]
+        public virtual ICollection<CPU> cpus { get; set; }
     }
 }

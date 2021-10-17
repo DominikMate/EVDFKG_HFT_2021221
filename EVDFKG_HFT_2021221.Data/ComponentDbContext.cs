@@ -32,7 +32,40 @@ namespace EVDFKG_HFT_2021221.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            Motherboard motherboard1 = new Motherboard()
+            {
+                MotherboardId = 1,
+                Series = "ROG STRIX B450-F Gaming II",
+                Brand = "ASUS",
+                CompatibleProcessors = "AMD 1st Gerenration Ryzen",
+                CPUSocket = "Socket AM4",
+                RAMSlot = 4,
+                RAMType = "DDR4",
+                MAXRAMSpeed = 4400,
+                GPUInterface = "PCI-E"
+            };
+            CPU cpu1 = new CPU
+            {
+                 CPUId=1,
+                 Series= "Ryzen 5",
+                 Brand="AMD",
+                 CPUSocket= "Socket AM4",
+                 CPUCore=6,
+                 CPUThread=12,
+                 CPUSpeed=4.6f,
+                 RAMType="DDR4"
+            };
+            RAM ram1 = new RAM
+            {
+                RAMId=1,
+                Series= "Corsair Vengeance LPX",
+                Brand = "Corsair",
+                RAMSize = 16,
+                RAMSpeed = 3200,
+                RAMType = "DDR4",
+                CASLatency ="C16",
+                PartNumber = "CMK16GX4M2B3200C16",
+            };
         }
     }
 }

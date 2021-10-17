@@ -10,8 +10,9 @@ namespace EVDFKG_HFT_2021221.Models
 {
     public class RAM
     {
-        [Key] //Primary Key
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key] //Primary Key
         public int RAMId { get; set; }
         public string Series { get; set; }
         public string Brand { get; set; }
@@ -21,11 +22,19 @@ namespace EVDFKG_HFT_2021221.Models
         public string CASLatency { get; set; }
         public string PartNumber { get; set; }
 
-        [NotMapped]
+
         //-------------------------------------------------------
         // NAVIGATION PROPERTIES
         //-------------------------------------------------------
-        public Motherboard motherboard { get; set; }
-        public CPU cpu { get; set; }
+
+        public RAM()
+        {
+            this.Motherboards = new HashSet<Motherboard>();
+            this.cpus = new HashSet<CPU>();
+        }
+        [NotMapped]
+        public virtual ICollection<Motherboard> Motherboards { get; set; }
+        [NotMapped]
+        public virtual ICollection<CPU> cpus { get; set; }
     }
 }
