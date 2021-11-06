@@ -41,7 +41,7 @@ namespace EVDFKG_HFT_2021221.Data
                 MotherboardId = 1,
                 Series = "ROG STRIX B450-F Gaming II",
                 Brand = "ASUS",
-                CompatibleProcessors = "AMD 1st Gerenration Ryzen",
+                CompatibleProcessors = "AMD_1G_RYZEN",
                 CPUSocket = "Socket AM4",
                 RAMSlot = 4,
                 RAMType = "DDR4",
