@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EVDFKG_HFT_2021221.Repository
 {
-    interface IRamRepository
+    public interface IRamRepository
     {
         void Create(RAM ram);
         RAM ReadOne(int id);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EVDFKG_HFT_2021221.Repository
 {
-    interface ICpuRepository
+    public interface ICpuRepository
     {
         void Create(CPU cpu);
         CPU ReadOne(int id);

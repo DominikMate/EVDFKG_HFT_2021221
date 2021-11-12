@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EVDFKG_HFT_2021221.Repository
 {
-    class CpuRepository : ICpuRepository
+    public class CpuRepository : ICpuRepository
     {
         ComponentDbContext context;
 

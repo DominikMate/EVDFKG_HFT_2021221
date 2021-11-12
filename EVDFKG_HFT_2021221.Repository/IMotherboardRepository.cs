@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EVDFKG_HFT_2021221.Repository
 {
-    interface IMotherboardRepository
+    public interface IMotherboardRepository
     {
         void Create(Motherboard motherboard);
         Motherboard ReadOne(int id);

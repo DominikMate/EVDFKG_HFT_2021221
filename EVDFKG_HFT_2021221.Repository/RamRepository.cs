@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EVDFKG_HFT_2021221.Repository
 {
-    class RamRepository : IRamRepository
+    public class RamRepository : IRamRepository
     {
         ComponentDbContext context;
         public RamRepository(ComponentDbContext context)
