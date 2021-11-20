@@ -14,6 +14,8 @@ namespace EVDFKG_HFT_2021221.Data
         public virtual DbSet<Motherboard> Motherboards { get; set; }
         public virtual DbSet<RAM> RAMs { get; set; }
 
+        public virtual DbSet<Combo> Combos { get; set; }
+
         public ComponentDbContext()
         {
             this.Database.EnsureCreated();
