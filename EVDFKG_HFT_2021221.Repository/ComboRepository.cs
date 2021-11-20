@@ -45,6 +45,10 @@ namespace EVDFKG_HFT_2021221.Repository
 
         public void Update(Combo combo)
         {
+            Combo old = ReadOne(combo.Id);
+            old.CPUId = combo.CPUId;
+            old.MotherboardId = combo.MotherboardId;
+            old.RAMId = combo.RAMId;
         }
     }
 }
