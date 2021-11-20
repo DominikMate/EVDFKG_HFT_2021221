@@ -36,6 +36,13 @@ namespace EVDFKG_HFT_2021221.Repository
             return context.Combos;
         }
 
+        public Combo ReadOne(int id)
+        {
+            return context
+                .Combos
+                .FirstOrDefault(x => x.Id == id);
+        }
+
         public void Update(Combo combo)
         {
         }

@@ -10,6 +10,7 @@ namespace EVDFKG_HFT_2021221.Repository
     interface IComboRepository
     {
         void Create(Combo combo);
+        CPU ReadOne(int id);
         IQueryable<Combo> ReadAll();
         void Update(Combo combo);
         void Delete(int id1, int id2, int id3);
