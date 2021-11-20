@@ -54,6 +54,7 @@ namespace EVDFKG_HFT_2021221.Repository
             old.CPUThread = cpu.CPUThread;
             old.CPUSpeed = cpu.CPUSpeed;
             old.RAMType = cpu.RAMType;
+            context.SaveChanges();
         }
     }
 }

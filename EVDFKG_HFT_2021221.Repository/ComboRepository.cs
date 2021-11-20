@@ -49,6 +49,7 @@ namespace EVDFKG_HFT_2021221.Repository
             old.CPUId = combo.CPUId;
             old.MotherboardId = combo.MotherboardId;
             old.RAMId = combo.RAMId;
+            context.SaveChanges();
         }
     }
 }

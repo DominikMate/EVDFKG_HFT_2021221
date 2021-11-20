@@ -52,6 +52,7 @@ namespace EVDFKG_HFT_2021221.Repository
             old.RAMType = ram.RAMType;
             old.CASLatency = ram.CASLatency;
             old.PartNumber = ram.PartNumber;
+            context.SaveChanges();
         }
     }
 }

@@ -55,6 +55,7 @@ namespace EVDFKG_HFT_2021221.Repository
             old.RAMType = motherboard.RAMType;
             old.MAXRAMSpeed = motherboard.MAXRAMSpeed;
             old.GPUInterface = motherboard.GPUInterface;
+            context.SaveChanges();
         }
     }
 }
