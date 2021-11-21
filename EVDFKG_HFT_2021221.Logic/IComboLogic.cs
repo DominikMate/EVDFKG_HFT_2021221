@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EVDFKG_HFT_2021221.Repository
+namespace EVDFKG_HFT_2021221.Logic
 {
-    public interface IComboRepository
+    public interface IComboLogic
     {
         void Create(Combo combo);
         Combo ReadOne(int id);

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EVDFKG_HFT_2021221.Repository
 {
-    class ComboRepository : IComboRepository
+    public class ComboRepository : IComboRepository
     {
         ComponentDbContext context;
 
@@ -21,11 +21,11 @@ namespace EVDFKG_HFT_2021221.Repository
             context.Combos.Add(combo);
         }
 
-        public void Delete(int id1, int id2, int id3)
+        public void Delete(int id)
         {
             Combo combo = context
                 .Combos
-                .FirstOrDefault(x => x.CPUId == id1 && x.MotherboardId == id2 && x.RAMId == id3);
+                .FirstOrDefault(x => x.Id==id);
             context.Combos.Remove(combo);
             context.SaveChanges();
         }
