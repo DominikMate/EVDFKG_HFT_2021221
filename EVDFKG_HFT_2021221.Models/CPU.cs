@@ -12,7 +12,6 @@ namespace EVDFKG_HFT_2021221.Models
     public class CPU
     {
         [Key] //Primary Key
-        public int Id { get; set; }
         public int CPUId { get; set; }
         public string Series { get; set; }
         public string Brand { get; set; }
@@ -27,6 +26,6 @@ namespace EVDFKG_HFT_2021221.Models
         // NAVIGATION PROPERTIES
         //-------------------------------------------------------
         [NotMapped]
-        public virtual IList<Combo> Combos { get; set; }
+        public virtual List<Combo> Combos { get; set; }
     }
 }

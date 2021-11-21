@@ -1,4 +1,5 @@
 ﻿using EVDFKG_HFT_2021221.Models;
+using EVDFKG_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace EVDFKG_HFT_2021221.Logic
 {
     public class CpuLogic : ICpuLogic
     {
-        ICpuLogic repo;
+        ICpuRepository repo;
 
-        public CpuLogic(ICpuLogic repo)
+        public CpuLogic(ICpuRepository repo)
         {
             this.repo = repo;
         }

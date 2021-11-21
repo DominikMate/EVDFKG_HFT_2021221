@@ -1,4 +1,5 @@
 ﻿using EVDFKG_HFT_2021221.Models;
+using EVDFKG_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace EVDFKG_HFT_2021221.Logic
 {
     public class MotherboardLogic : IMotherboardLogic
     {
-        IMotherboardLogic repo;
-        public MotherboardLogic(IMotherboardLogic repo)
+        IMotherboardRepository repo;
+        public MotherboardLogic(IMotherboardRepository repo)
         {
             this.repo = repo;
         }
@@ -37,6 +38,14 @@ namespace EVDFKG_HFT_2021221.Logic
         public void Update(Motherboard motherboard)
         {
             repo.Update(motherboard);
+        }
+        public IEnumerable<KeyValuePair<string, double>> MotherboardCPUCores()
+        {
+            return repo
+                .ReadAll()
+                .SelectMany(x => x.Combos)
+                .Select(x => new KeyValuePair<string, double>(
+                    x.Motherboard.Brand, x.CPU.CPUCore));
         }
     }
 }

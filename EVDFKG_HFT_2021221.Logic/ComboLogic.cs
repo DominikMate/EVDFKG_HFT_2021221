@@ -1,4 +1,5 @@
 ﻿using EVDFKG_HFT_2021221.Models;
+using EVDFKG_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace EVDFKG_HFT_2021221.Logic
 {
     public class ComboLogic : IComboLogic
     {
-        IComboLogic repo;
-        public ComboLogic(IComboLogic repo)
+        IComboRepository repo;
+        public ComboLogic(IComboRepository repo)
         {
             this.repo = repo;
         }
@@ -26,17 +27,25 @@ namespace EVDFKG_HFT_2021221.Logic
 
         public IQueryable<Combo> ReadAll()
         {
-            throw new NotImplementedException();
+            return repo.ReadAll();
         }
 
         public Combo ReadOne(int id)
         {
-            throw new NotImplementedException();
+            return repo.ReadOne(id);
         }
 
         public void Update(Combo combo)
         {
-            throw new NotImplementedException();
+            repo.Update(combo);
+        }
+        public IEnumerable<KeyValuePair<string, double>> AverageRamtypeSpeed()
+        {
+            return repo
+                .ReadAll()
+                .GroupBy(x => x.CPU.Brand)
+                .Select(x => new KeyValuePair<string, double>(
+                    x.Key.ToString(), x.Average(r => r.RAM.RAMSpeed)));
         }
     }
 }

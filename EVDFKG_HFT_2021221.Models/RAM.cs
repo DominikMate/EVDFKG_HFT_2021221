@@ -27,6 +27,6 @@ namespace EVDFKG_HFT_2021221.Models
         // NAVIGATION PROPERTIES
         //-------------------------------------------------------
         [NotMapped]
-        public virtual IList<Combo> Combos { get; set; }
+        public virtual List<Combo> Combos { get; set; }
     }
 }

@@ -14,5 +14,6 @@ namespace EVDFKG_HFT_2021221.Logic
         IQueryable<Combo> ReadAll();
         void Update(Combo combo);
         void Delete(int id);
+        public IEnumerable<KeyValuePair<string, double>> AverageRamtypeSpeed();
     }
 }
