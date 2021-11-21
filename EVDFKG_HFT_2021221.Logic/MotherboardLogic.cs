@@ -17,6 +17,10 @@ namespace EVDFKG_HFT_2021221.Logic
         }
         public void Create(Motherboard motherboard)
         {
+            if (motherboard == null)
+            {
+                throw new NullReferenceException();
+            }
             repo.Create(motherboard);
         }
 
@@ -38,14 +42,6 @@ namespace EVDFKG_HFT_2021221.Logic
         public void Update(Motherboard motherboard)
         {
             repo.Update(motherboard);
-        }
-        public IEnumerable<KeyValuePair<string, double>> MotherboardCPUCores()
-        {
-            return repo
-                .ReadAll()
-                .SelectMany(x => x.Combos)
-                .Select(x => new KeyValuePair<string, double>(
-                    x.Motherboard.Brand, x.CPU.CPUCore));
         }
     }
 }

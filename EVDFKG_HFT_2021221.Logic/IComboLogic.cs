@@ -14,6 +14,10 @@ namespace EVDFKG_HFT_2021221.Logic
         IQueryable<Combo> ReadAll();
         void Update(Combo combo);
         void Delete(int id);
-        public IEnumerable<KeyValuePair<string, double>> AverageRamtypeSpeed();
+        public IEnumerable<KeyValuePair<string, double>> CpuRamSpeedAverage();
+        public IEnumerable<KeyValuePair<string, double>> MotherboardCpuCoreAverage();
+        public IEnumerable<KeyValuePair<string, double>> RamCpuSpeedAverage();
+        public IEnumerable<KeyValuePair<string, double>> CpuRAMSlotAverage();
+        public IEnumerable<KeyValuePair<string, double>> RamCPUThreadAverage();
     }
 }

@@ -17,6 +17,10 @@ namespace EVDFKG_HFT_2021221.Logic
         }
         public void Create(Combo combo)
         {
+            if (combo==null)
+            {
+                throw new NullReferenceException();
+            }
             repo.Create(combo);
         }
 
@@ -39,13 +43,48 @@ namespace EVDFKG_HFT_2021221.Logic
         {
             repo.Update(combo);
         }
-        public IEnumerable<KeyValuePair<string, double>> AverageRamtypeSpeed()
+        public IEnumerable<KeyValuePair<string, double>> CpuRamSpeedAverage()
         {
             return repo
                 .ReadAll()
                 .GroupBy(x => x.CPU.Brand)
                 .Select(x => new KeyValuePair<string, double>(
                     x.Key.ToString(), x.Average(r => r.RAM.RAMSpeed)));
+        }
+        public IEnumerable<KeyValuePair<string, double>> MotherboardCpuCoreAverage()
+        {
+            return repo
+                .ReadAll()
+                .GroupBy(x => x.Motherboard.Brand)
+                .Select(x => new KeyValuePair<string, double>(
+                    x.Key.ToString(), x.Average(r => r.CPU.CPUCore)));
+        }
+
+        public IEnumerable<KeyValuePair<string, double>> RamCpuSpeedAverage()
+        {
+            return repo
+            .ReadAll()
+            .GroupBy(x => x.RAM.Brand)
+            .Select(x => new KeyValuePair<string, double>(
+             x.Key.ToString(), x.Average(r => r.CPU.CPUSpeed)));
+        }
+
+        public IEnumerable<KeyValuePair<string, double>> CpuRAMSlotAverage()
+        {
+            return repo
+            .ReadAll()
+            .GroupBy(x => x.CPU.Brand)
+            .Select(x => new KeyValuePair<string, double>(
+             x.Key.ToString(), x.Average(r => r.Motherboard.RAMSlot)));
+        }
+
+        public IEnumerable<KeyValuePair<string, double>> RamCPUThreadAverage()
+        {
+            return repo
+            .ReadAll()
+            .GroupBy(x => x.RAM.Brand)
+            .Select(x => new KeyValuePair<string, double>(
+            x.Key.ToString(), x.Average(r => r.CPU.CPUThread)));
         }
     }
 }

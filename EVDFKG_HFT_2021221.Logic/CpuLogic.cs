@@ -18,6 +18,10 @@ namespace EVDFKG_HFT_2021221.Logic
         }
         public void Create(CPU cpu)
         {
+            if (cpu == null)
+            {
+                throw new NullReferenceException();
+            }
             repo.Create(cpu);
         }
 
@@ -40,5 +44,6 @@ namespace EVDFKG_HFT_2021221.Logic
         {
             repo.Update(cpu);
         }
+
     }
 }

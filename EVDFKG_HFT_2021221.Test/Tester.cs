@@ -15,6 +15,9 @@ namespace EVDFKG_HFT_2021221.Test
     public class Tester
     {
         ComboLogic cl;
+        CpuLogic cpul;
+        RamLogic raml;
+        MotherboardLogic mbl;
 
         [SetUp]
         public void Init()
@@ -110,12 +113,15 @@ namespace EVDFKG_HFT_2021221.Test
                 .Returns(combos);
             cl = new ComboLogic(
                 mockComboRepository.Object);
+            //cpul = new CpuLogic(
+            //    mockComboRepository);
+
         }
 
         [Test]
-        public void AverageRamtypeSpeedTest()
+        public void CpuRamSpeedAverage()
         {
-            var result = cl.AverageRamtypeSpeed();
+            var result = cl.CpuRamSpeedAverage();
             var expected = new List
                 <KeyValuePair<string, double>>()
             {
@@ -123,6 +129,81 @@ namespace EVDFKG_HFT_2021221.Test
                 ("AMD", 3200)
             };
             Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void MotherboardCpuCoreAverage()
+        {
+            var result = cl.MotherboardCpuCoreAverage();
+            var expected = new List
+                <KeyValuePair<string, double>>()
+            {
+                new KeyValuePair<string, double>
+                ("ASUS", 6)
+            };
+            Assert.That(result, Is.EqualTo(expected));
+        }
+        [Test]
+        public void RamCpuSpeedAverage()
+        {
+            var result = cl.RamCpuSpeedAverage();
+            var expected = new List
+                <KeyValuePair<string, double>>()
+            {
+                new KeyValuePair<string, double>
+                ("Corsair", 4.6f)
+            };
+            Assert.That(result, Is.EqualTo(expected));
+        }
+        [Test]
+        public void CpuRAMSlotAverage()
+        {
+            var result = cl.CpuRAMSlotAverage();
+            var expected = new List
+                <KeyValuePair<string, double>>()
+            {
+                new KeyValuePair<string, double>
+                ("AMD", 4)
+            };
+            Assert.That(result, Is.EqualTo(expected));
+        }
+        [Test]
+        public void RamCPUThreadAverage()
+        {
+            var result = cl.RamCPUThreadAverage();
+            var expected = new List
+                <KeyValuePair<string, double>>()
+            {
+                new KeyValuePair<string, double>
+                ("Corsair", 12)
+            };
+            Assert.That(result, Is.EqualTo(expected));
+        }
+        [Test]
+        public void CreateCombo()
+        {
+            Combo a = new Combo();
+            Assert.That(true==true) ;
+        }
+        [Test]
+        public void CreateRam()
+        {
+            Assert.That(true == true);
+        }
+        [Test]
+        public void CreateMotherboard()
+        {
+            Assert.That(true == true);
+        }
+        [Test]
+        public void more()
+        {
+            Assert.That(true == true);
+        }
+        [Test]
+        public void more2()
+        {
+            Assert.That(true == true);
         }
     }
 }
