@@ -22,37 +22,17 @@ namespace EVDFKG_HFT_2021221.Test
         [SetUp]
         public void Init()
         {
-            var mockComboRepository = new Mock<IComboRepository>();
-            var cpu1 =new CPU(){
-                CPUId=1,
-                Series= "Ryzen 5",
-                Brand="AMD",
-                CPUSocket= "Socket AM4",
-                CPUCore=6,
-                CPUThread=12,
-                CPUSpeed=4.6f,
-                RAMType="DDR4",
-            };
-            var ram1 = new RAM(){
-                RAMId=1,
-                Series= "Corsair Vengeance LPX",
-                Brand = "Corsair",
-                RAMSize = 16,
-                RAMSpeed = 3200,
-                RAMType = "DDR4",
-                CASLatency ="C16",
-                PartNumber = "CMK16GX4M2B3200C16",
-            };
-            var motherboard1 = new Motherboard(){
-                MotherboardId = 1,
-                Series = "ROG STRIX B450-F Gaming II",
-                Brand = "ASUS",
-                CompatibleProcessors = "AMD_1G_RYZEN",
+            var mockCpuRepository = new Mock<ICpuRepository>();
+            var cpu1 = new CPU()
+            {
+                CPUId = 1,
+                Series = "Ryzen 5",
+                Brand = "AMD",
                 CPUSocket = "Socket AM4",
-                RAMSlot = 4,
+                CPUCore = 6,
+                CPUThread = 12,
+                CPUSpeed = 4.6f,
                 RAMType = "DDR4",
-                MAXRAMSpeed = 4400,
-                GPUInterface = "PCI-E",
             };
             var cpu2 = new CPU()
             {
@@ -65,6 +45,20 @@ namespace EVDFKG_HFT_2021221.Test
                 CPUSpeed = 4.6f,
                 RAMType = "DDR4",
             };
+            var cpus = new List<CPU>
+            {cpu1,cpu2,}.AsQueryable();
+            var mockRamRepository = new Mock<IRamRepository>();
+            var ram1 = new RAM()
+            {
+                RAMId = 1,
+                Series = "Corsair Vengeance LPX",
+                Brand = "Corsair",
+                RAMSize = 16,
+                RAMSpeed = 3200,
+                RAMType = "DDR4",
+                CASLatency = "C16",
+                PartNumber = "CMK16GX4M2B3200C16",
+            };
             var ram2 = new RAM()
             {
                 RAMId = 2,
@@ -75,6 +69,21 @@ namespace EVDFKG_HFT_2021221.Test
                 RAMType = "DDR4",
                 CASLatency = "C16",
                 PartNumber = "CMK16GX4M2B3200C16",
+            };
+            var rams = new List<RAM>()
+            { ram1,ram2 }.AsQueryable();
+            var mockMotherboardRepository = new Mock<IMotherboardRepository>();
+            var motherboard1 = new Motherboard()
+            {
+                MotherboardId = 1,
+                Series = "ROG STRIX B450-F Gaming II",
+                Brand = "ASUS",
+                CompatibleProcessors = "AMD_1G_RYZEN",
+                CPUSocket = "Socket AM4",
+                RAMSlot = 4,
+                RAMType = "DDR4",
+                MAXRAMSpeed = 4400,
+                GPUInterface = "PCI-E",
             };
             var motherboard2 = new Motherboard()
             {
@@ -88,6 +97,9 @@ namespace EVDFKG_HFT_2021221.Test
                 MAXRAMSpeed = 4400,
                 GPUInterface = "PCI-E",
             };
+            var motherboards = new List<Motherboard>()
+            { motherboard1,motherboard2 }.AsQueryable();
+            var mockComboRepository = new Mock<IComboRepository>();
             var combos = new List<Combo>
             {
                 new Combo()
@@ -113,10 +125,24 @@ namespace EVDFKG_HFT_2021221.Test
                 .Returns(combos);
             cl = new ComboLogic(
                 mockComboRepository.Object);
-            //cpul = new CpuLogic(
-            //    mockComboRepository);
 
+            mockRamRepository.Setup((t) => t.ReadAll())
+                .Returns(rams);
+            raml = new RamLogic(
+                mockRamRepository.Object);
+
+            mockCpuRepository.Setup((t) => t.ReadAll())
+                .Returns(cpus);
+            cpul = new CpuLogic(
+                mockCpuRepository.Object);
+
+            mockMotherboardRepository.Setup((t) => t.ReadAll())
+                .Returns(motherboards);
+            mbl = new MotherboardLogic(
+                mockMotherboardRepository.Object);
         }
+
+
 
         [Test]
         public void CpuRamSpeedAverage()
@@ -180,20 +206,19 @@ namespace EVDFKG_HFT_2021221.Test
             Assert.That(result, Is.EqualTo(expected));
         }
         [Test]
-        public void CreateCombo()
+        public void CreateCpu()
         {
-            Combo a = new Combo();
-            Assert.That(true==true) ;
+            Assert.That(() => cpul.Create(new CPU()), Throws.Exception);
         }
         [Test]
         public void CreateRam()
         {
-            Assert.That(true == true);
+            Assert.That(() => raml.Create(new RAM()), Throws.Exception);
         }
         [Test]
         public void CreateMotherboard()
         {
-            Assert.That(true == true);
+            Assert.That(() => mbl.Create(new Motherboard()), Throws.Exception);
         }
         [Test]
         public void more()

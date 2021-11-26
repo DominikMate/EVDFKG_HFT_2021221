@@ -17,7 +17,7 @@ namespace EVDFKG_HFT_2021221.Logic
         }
         public void Create(Combo combo)
         {
-            if (combo==null)
+            if (combo.CPU == null || combo.Motherboard == null || combo.RAM==null)
             {
                 throw new NullReferenceException();
             }

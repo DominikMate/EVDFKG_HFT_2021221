@@ -18,7 +18,7 @@ namespace EVDFKG_HFT_2021221.Logic
         }
         public void Create(CPU cpu)
         {
-            if (cpu == null)
+            if (cpu.Brand==null || cpu.CPUCore==0)
             {
                 throw new NullReferenceException();
             }

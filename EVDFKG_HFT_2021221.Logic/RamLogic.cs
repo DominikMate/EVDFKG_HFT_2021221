@@ -18,6 +18,10 @@ namespace EVDFKG_HFT_2021221.Logic
         }
         public void Create(RAM ram)
         {
+            if (ram.Brand==null||ram.PartNumber==null)
+            {
+                throw new NullReferenceException();
+            }
             repo.Create(ram);
         }
 

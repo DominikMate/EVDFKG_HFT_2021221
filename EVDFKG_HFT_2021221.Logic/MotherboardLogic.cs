@@ -17,7 +17,7 @@ namespace EVDFKG_HFT_2021221.Logic
         }
         public void Create(Motherboard motherboard)
         {
-            if (motherboard == null)
+            if (motherboard.Brand==null || motherboard.CPUSocket==null)
             {
                 throw new NullReferenceException();
             }
