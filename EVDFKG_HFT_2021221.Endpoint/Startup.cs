@@ -1,6 +1,10 @@
+using EVDFKG_HFT_2021221.Data;
+using EVDFKG_HFT_2021221.Logic;
+using EVDFKG_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -12,13 +16,30 @@ namespace EVDFKG_HFT_2021221.Endpoint
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+        public Startup(IConfiguration configuration)
         {
+            Configuration = configuration;
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public IConfiguration Configuration { get; }
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllers();
+            services.AddTransient<ICpuLogic, CpuLogic>();
+            services.AddTransient<IMotherboardLogic, MotherboardLogic>();
+            services.AddTransient<IRamLogic, RamLogic>();
+            services.AddTransient<IComboLogic, ComboLogic>();
+
+            services.AddTransient<ICpuRepository, CpuRepository>();
+            services.AddTransient<IMotherboardRepository, MotherboardRepository>();
+            services.AddTransient<IRamRepository, RamRepository>();
+            services.AddTransient<IComboRepository, ComboRepository>();
+
+            services.AddTransient<ComponentDbContext, ComponentDbContext>();
+
+        }
+
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -30,10 +51,7 @@ namespace EVDFKG_HFT_2021221.Endpoint
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }

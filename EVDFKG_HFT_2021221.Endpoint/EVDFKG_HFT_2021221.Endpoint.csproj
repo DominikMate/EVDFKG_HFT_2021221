@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EVDFKG_HFT_2021221.Data\EVDFKG_HFT_2021221.Data.csproj" />
+    <ProjectReference Include="..\EVDFKG_HFT_2021221.Logic\EVDFKG_HFT_2021221.Logic.csproj" />
     <ProjectReference Include="..\EVDFKG_HFT_2021221.Models\EVDFKG_HFT_2021221.Models.csproj" />
+    <ProjectReference Include="..\EVDFKG_HFT_2021221.Repository\EVDFKG_HFT_2021221.Repository.csproj" />
   </ItemGroup>
 
 </Project>
