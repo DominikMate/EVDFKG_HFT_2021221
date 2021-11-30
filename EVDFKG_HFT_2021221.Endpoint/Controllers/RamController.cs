@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using EVDFKG_HFT_2021221.Logic;
+using EVDFKG_HFT_2021221.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,40 +10,50 @@ using System.Threading.Tasks;
 
 namespace EVDFKG_HFT_2021221.Endpoint.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class RamController : ControllerBase
     {
-        // GET: api/<RamController>
+        IRamLogic irl;
+
+        public RamController(IRamLogic irl)
+        {
+            this.irl = irl;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<RAM> Get()
         {
-            return new string[] { "value1", "value2" };
+            return irl.ReadAll();
         }
 
-        // GET api/<RamController>/5
+
         [HttpGet("{id}")]
-        public string Get(int id)
+        public RAM Get(int id)
         {
-            return "value";
+            return irl.ReadOne(id);
         }
 
-        // POST api/<RamController>
+
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] RAM value)
         {
+            irl.Create(value);
         }
 
-        // PUT api/<RamController>/5
+
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put([FromBody] RAM value)
         {
+            irl.Update(value);
         }
 
-        // DELETE api/<RamController>/5
+
+
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            irl.Delete(id);
         }
     }
 }
