@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EVDFKG_HFT_2021221.Logic;
+using EVDFKG_HFT_2021221.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,40 +10,63 @@ using System.Threading.Tasks;
 
 namespace EVDFKG_HFT_2021221.Endpoint.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ComboController : ControllerBase
     {
+        IComboLogic icl;
+
+        public ComboController(IComboLogic icl)
+        {
+            this.icl = icl;
+        }
+
         // GET: api/<ComboController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Combo> Get()
         {
-            return new string[] { "value1", "value2" };
+            return icl.ReadAll();
         }
 
         // GET api/<ComboController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Combo Get(int id)
         {
-            return "value";
+            return icl.ReadOne(id);
         }
 
         // POST api/<ComboController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Combo value)
         {
+            icl.Create(value);
         }
 
         // PUT api/<ComboController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put([FromBody] Combo value)
         {
+            icl.Update(value);
         }
 
         // DELETE api/<ComboController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            icl.Delete(id);
+        }
+
+        [Route("crsa")]
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, double>> crsa()
+        {
+            return icl.CpuRamSpeedAverage();
+        }
+        [Route("ids")]
+        [HttpGet]
+        public string ids()
+        {
+            return icl.LastIds();
         }
     }
 }

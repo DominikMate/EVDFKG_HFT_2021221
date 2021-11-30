@@ -19,5 +19,6 @@ namespace EVDFKG_HFT_2021221.Logic
         public IEnumerable<KeyValuePair<string, double>> RamCpuSpeedAverage();
         public IEnumerable<KeyValuePair<string, double>> CpuRAMSlotAverage();
         public IEnumerable<KeyValuePair<string, double>> RamCPUThreadAverage();
+        public string LastIds();
     }
 }

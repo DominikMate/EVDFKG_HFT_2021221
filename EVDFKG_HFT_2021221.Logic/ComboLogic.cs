@@ -1,5 +1,6 @@
 ﻿using EVDFKG_HFT_2021221.Models;
 using EVDFKG_HFT_2021221.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,44 +48,64 @@ namespace EVDFKG_HFT_2021221.Logic
         {
             return repo
                 .ReadAll()
+                .Include("CPU")
+                .Include("RAM")
+                .AsEnumerable()
                 .GroupBy(x => x.CPU.Brand)
                 .Select(x => new KeyValuePair<string, double>(
-                    x.Key.ToString(), x.Average(r => r.RAM.RAMSpeed)));
+                    x.Key.ToString(), x.Average(r => r.RAM.RAMSpeed))).ToList();
         }
         public IEnumerable<KeyValuePair<string, double>> MotherboardCpuCoreAverage()
         {
             return repo
                 .ReadAll()
+                .Include("Motherboard")
+                .Include("CPU")
+                .AsEnumerable()
                 .GroupBy(x => x.Motherboard.Brand)
                 .Select(x => new KeyValuePair<string, double>(
-                    x.Key.ToString(), x.Average(r => r.CPU.CPUCore)));
+                    x.Key.ToString(), x.Average(r => r.CPU.CPUCore))).ToList();
         }
 
         public IEnumerable<KeyValuePair<string, double>> RamCpuSpeedAverage()
         {
             return repo
             .ReadAll()
+            .Include("RAM")
+            .Include("CPU")
+            .AsEnumerable()
             .GroupBy(x => x.RAM.Brand)
             .Select(x => new KeyValuePair<string, double>(
-             x.Key.ToString(), x.Average(r => r.CPU.CPUSpeed)));
+             x.Key.ToString(), x.Average(r => r.CPU.CPUSpeed))).ToList();
         }
 
         public IEnumerable<KeyValuePair<string, double>> CpuRAMSlotAverage()
         {
             return repo
             .ReadAll()
+            .Include("CPU")
+            .Include("Motherboard")
+            .AsEnumerable()
             .GroupBy(x => x.CPU.Brand)
             .Select(x => new KeyValuePair<string, double>(
-             x.Key.ToString(), x.Average(r => r.Motherboard.RAMSlot)));
+             x.Key.ToString(), x.Average(r => r.Motherboard.RAMSlot))).ToList();
         }
 
         public IEnumerable<KeyValuePair<string, double>> RamCPUThreadAverage()
         {
             return repo
             .ReadAll()
+            .Include("RAM")
+            .Include("CPU")
+            .AsEnumerable()
             .GroupBy(x => x.RAM.Brand)
             .Select(x => new KeyValuePair<string, double>(
-            x.Key.ToString(), x.Average(r => r.CPU.CPUThread)));
+            x.Key.ToString(), x.Average(r => r.CPU.CPUThread))).ToList();
+        }
+        public string LastIds()
+        {
+            return repo
+                .ReadAll().Select(x => x.CPU.CPUId).ToString();
         }
     }
 }
