@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using EVDFKG_HFT_2021221.Logic;
+using EVDFKG_HFT_2021221.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,40 +10,45 @@ using System.Threading.Tasks;
 
 namespace EVDFKG_HFT_2021221.Endpoint.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class MotherboardController : ControllerBase
     {
-        // GET: api/<MotherboardController>
+        IMotherboardLogic iml;
+
+        public MotherboardController(IMotherboardLogic iml)
+        {
+            this.iml = iml;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Motherboard> Get()
         {
-            return new string[] { "value1", "value2" };
+            return iml.ReadAll();
         }
 
-        // GET api/<MotherboardController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Motherboard Get(int id)
         {
-            return "value";
+            return iml.ReadOne(id);
         }
 
-        // POST api/<MotherboardController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Motherboard value)
         {
+            iml.Create(value);
         }
 
-        // PUT api/<MotherboardController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put([FromBody] Motherboard value)
         {
+            iml.Update(value);
         }
 
-        // DELETE api/<MotherboardController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            iml.Delete(id);
         }
     }
 }
