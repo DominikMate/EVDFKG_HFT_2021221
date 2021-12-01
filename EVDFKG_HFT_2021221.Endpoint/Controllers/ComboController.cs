@@ -64,7 +64,7 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
         }
         [Route("ids")]
         [HttpGet]
-        public string ids()
+        public IEnumerable<KeyValuePair<string, double>> ids()
         {
             return icl.LastIds();
         }

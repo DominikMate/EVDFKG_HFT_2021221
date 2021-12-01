@@ -102,10 +102,16 @@ namespace EVDFKG_HFT_2021221.Logic
             .Select(x => new KeyValuePair<string, double>(
             x.Key.ToString(), x.Average(r => r.CPU.CPUThread))).ToList();
         }
-        public string LastIds()
+        public IEnumerable<KeyValuePair<string, double>> LastIds()
         {
-            return repo
-                .ReadAll().Select(x => x.CPU.CPUId).ToString();
+            return repo.ReadAll()
+                .Include("CPU")
+                .AsEnumerable()
+                .OrderByDescending(x=>x.Id)
+                .Select(x => new KeyValuePair<string, double>(
+            "CPUId: "+x.CPU.CPUId.ToString()+", MotherboardId: " 
+            + x.Motherboard.MotherboardId.ToString()
+            +", RAMId: " + x.RAM.RAMId.ToString(), 0));
         }
     }
 }

@@ -13,9 +13,7 @@ namespace EVDFKG_HFT_2021221.Client
         static void Main(string[] args)
         {
             RestService rest = new RestService("http://localhost:9861");
-            //ComponentDbContext db = new ComponentDbContext();
-            //CpuLogic cpuLogic = new CpuLogic(
-            //    new CpuRepository(db));
         }
+
     }
 }

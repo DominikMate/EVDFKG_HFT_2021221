@@ -44,6 +44,5 @@ namespace EVDFKG_HFT_2021221.Logic
         {
             repo.Update(cpu);
         }
-
     }
 }
