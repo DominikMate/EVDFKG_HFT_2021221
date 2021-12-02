@@ -13,6 +13,7 @@ namespace EVDFKG_HFT_2021221.Models
     public class Motherboard
     {
         [Key] //Primary Key
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MotherboardId { get; set; }
         public string Series { get; set; }
         public string Brand { get; set; }

@@ -39,7 +39,7 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
             iml.Create(value);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put([FromBody] Motherboard value)
         {
             iml.Update(value);

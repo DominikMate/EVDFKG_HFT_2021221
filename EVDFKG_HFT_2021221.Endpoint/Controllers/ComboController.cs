@@ -43,7 +43,7 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
         }
 
         // PUT api/<ComboController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put([FromBody] Combo value)
         {
             icl.Update(value);
@@ -62,11 +62,29 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
         {
             return icl.CpuRamSpeedAverage();
         }
-        [Route("ids")]
+        [Route("mcca")]
         [HttpGet]
-        public IEnumerable<KeyValuePair<string, double>> ids()
+        public IEnumerable<KeyValuePair<string, double>> mcca()
         {
-            return icl.LastIds();
+            return icl.MotherboardCpuCoreAverage();
+        }
+        [Route("rcsa")]
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, double>> rcsa()
+        {
+            return icl.RamCpuSpeedAverage();
+        }
+        [Route("crrsa")]
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, double>> crrsa()
+        {
+            return icl.CpuRAMSlotAverage();
+        }
+        [Route("crta")]
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, double>> crta()
+        {
+            return icl.RamCPUThreadAverage();
         }
     }
 }

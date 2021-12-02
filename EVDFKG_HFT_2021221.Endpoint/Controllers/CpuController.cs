@@ -43,7 +43,7 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
         }
 
         // PUT /cpu
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put([FromBody] CPU value)
         {
             icl.Update(value);

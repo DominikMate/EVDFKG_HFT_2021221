@@ -220,15 +220,5 @@ namespace EVDFKG_HFT_2021221.Test
         {
             Assert.That(() => mbl.Create(new Motherboard()), Throws.Exception);
         }
-        [Test]
-        public void more()
-        {
-            Assert.That(true == true);
-        }
-        [Test]
-        public void more2()
-        {
-            Assert.That(true == true);
-        }
     }
 }

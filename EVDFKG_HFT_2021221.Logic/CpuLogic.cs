@@ -20,7 +20,7 @@ namespace EVDFKG_HFT_2021221.Logic
         {
             if (cpu.Brand==null || cpu.CPUCore==0)
             {
-                throw new NullReferenceException();
+                throw new NullReferenceException("The Item cannot be created");
             }
             repo.Create(cpu);
         }

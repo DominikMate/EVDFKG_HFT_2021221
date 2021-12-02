@@ -18,7 +18,7 @@ namespace EVDFKG_HFT_2021221.Logic
         }
         public void Create(Combo combo)
         {
-            if (combo.CPU == null || combo.Motherboard == null || combo.RAM==null)
+            if (combo.CPUId <= 0 || combo.MotherboardId <= 0 || combo.RAMId <= 0)
             {
                 throw new NullReferenceException();
             }
@@ -101,17 +101,6 @@ namespace EVDFKG_HFT_2021221.Logic
             .GroupBy(x => x.RAM.Brand)
             .Select(x => new KeyValuePair<string, double>(
             x.Key.ToString(), x.Average(r => r.CPU.CPUThread))).ToList();
-        }
-        public IEnumerable<KeyValuePair<string, double>> LastIds()
-        {
-            return repo.ReadAll()
-                .Include("CPU")
-                .AsEnumerable()
-                .OrderByDescending(x=>x.Id)
-                .Select(x => new KeyValuePair<string, double>(
-            "CPUId: "+x.CPU.CPUId.ToString()+", MotherboardId: " 
-            + x.Motherboard.MotherboardId.ToString()
-            +", RAMId: " + x.RAM.RAMId.ToString(), 0));
         }
     }
 }

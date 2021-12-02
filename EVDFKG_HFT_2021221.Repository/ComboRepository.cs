@@ -19,6 +19,7 @@ namespace EVDFKG_HFT_2021221.Repository
         public void Create(Combo combo)
         {
             context.Combos.Add(combo);
+            context.SaveChanges();
         }
 
         public void Delete(int id)

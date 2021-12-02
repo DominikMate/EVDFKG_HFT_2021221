@@ -14,6 +14,7 @@ namespace EVDFKG_HFT_2021221.Models
     {
 
         [Key] //Primary Key
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RAMId { get; set; }
         public string Series { get; set; }
         public string Brand { get; set; }

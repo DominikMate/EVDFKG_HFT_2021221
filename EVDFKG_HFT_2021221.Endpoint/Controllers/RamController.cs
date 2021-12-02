@@ -42,7 +42,7 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
         }
 
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put([FromBody] RAM value)
         {
             irl.Update(value);

@@ -13,6 +13,7 @@ namespace EVDFKG_HFT_2021221.Models
     public class CPU
     {
         [Key] //Primary Key
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CPUId { get; set; }
         public string Series { get; set; }
         public string Brand { get; set; }
