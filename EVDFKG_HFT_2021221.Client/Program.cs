@@ -1,7 +1,4 @@
-﻿using EVDFKG_HFT_2021221.Data;
-using EVDFKG_HFT_2021221.Logic;
-using EVDFKG_HFT_2021221.Models;
-using EVDFKG_HFT_2021221.Repository;
+﻿using EVDFKG_HFT_2021221.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
