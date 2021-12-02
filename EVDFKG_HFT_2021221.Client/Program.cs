@@ -536,19 +536,31 @@ namespace EVDFKG_HFT_2021221.Client
         }
         static void DeleteCpu(RestService rest,int id)
         {
-            rest.Delete(id, "/cpu");
+            if (id!=0)
+            {
+                rest.Delete(id, "/cpu");
+            }
         }
         static void DeleteMotherboard(RestService rest, int id)
         {
-            rest.Delete(id, "/motherboard");
+            if (id != 0)
+            {
+                rest.Delete(id, "/motherboard");
+            }
         }
         static void DeleteRam(RestService rest, int id)
         {
-            rest.Delete(id, "/ram");
+            if (id != 0)
+            {
+                rest.Delete(id, "/ram");
+            }
         }
         static void DeleteCombo(RestService rest, int id)
         {
-            rest.Delete(id, "/combo");
+            if (id != 0)
+            {
+                rest.Delete(id, "/combo");
+            }
         }
         static string CpuRamSpeedAverage(RestService rest)
         {
