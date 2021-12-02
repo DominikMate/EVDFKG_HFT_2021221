@@ -220,5 +220,15 @@ namespace EVDFKG_HFT_2021221.Test
         {
             Assert.That(() => mbl.Create(new Motherboard()), Throws.Exception);
         }
+        [Test]
+        public void ComboReadAllType()
+        {
+            Assert.AreEqual(cl.ReadAll().GetType(), typeof(EnumerableQuery<Combo>));
+        }
+        [Test]
+        public void CPUReadAllType()
+        {
+            Assert.AreEqual(cpul.ReadAll().GetType(), typeof(EnumerableQuery<CPU>));
+        }
     }
 }
