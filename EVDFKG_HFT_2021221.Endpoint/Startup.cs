@@ -1,4 +1,5 @@
 using EVDFKG_HFT_2021221.Data;
+using EVDFKG_HFT_2021221.Endpoint.Services;
 using EVDFKG_HFT_2021221.Logic;
 using EVDFKG_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -24,12 +25,13 @@ namespace EVDFKG_HFT_2021221.Endpoint
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers();
             services.AddTransient<ICpuLogic, CpuLogic>();
             services.AddTransient<IMotherboardLogic, MotherboardLogic>();
             services.AddTransient<IRamLogic, RamLogic>();
             services.AddTransient<IComboLogic, ComboLogic>();
-
+            services.AddSignalR();
             services.AddTransient<ICpuRepository, CpuRepository>();
             services.AddTransient<IMotherboardRepository, MotherboardRepository>();
             services.AddTransient<IRamRepository, RamRepository>();
@@ -52,6 +54,7 @@ namespace EVDFKG_HFT_2021221.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

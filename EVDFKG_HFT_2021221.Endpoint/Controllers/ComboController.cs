@@ -1,6 +1,8 @@
-﻿using EVDFKG_HFT_2021221.Logic;
+﻿using EVDFKG_HFT_2021221.Endpoint.Services;
+using EVDFKG_HFT_2021221.Logic;
 using EVDFKG_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +17,12 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
     public class ComboController : ControllerBase
     {
         IComboLogic icl;
+        IHubContext<SignalRHub> hub;
 
-        public ComboController(IComboLogic icl)
+        public ComboController(IComboLogic icl, IHubContext<SignalRHub> hub)
         {
             this.icl = icl;
+            this.hub = hub;
         }
 
         // GET: api/<ComboController>
@@ -40,6 +44,7 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Combo value)
         {
             icl.Create(value);
+            hub.Clients.All.SendAsync("ComboCreated", value);
         }
 
         // PUT api/<ComboController>/5
@@ -47,13 +52,16 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Combo value)
         {
             icl.Update(value);
+            hub.Clients.All.SendAsync("ComboUpdated", value);
         }
 
         // DELETE api/<ComboController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var comboToDelete = this.icl.ReadOne(id);
             icl.Delete(id);
+            hub.Clients.All.SendAsync("ComboDeleted", comboToDelete);
         }
 
         [Route("crsa")]

@@ -9,7 +9,7 @@ namespace EVDFKG_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            System.Threading.Thread.Sleep(4000);
+            System.Threading.Thread.Sleep(6000);
             RestService rest = new RestService("http://localhost:9861");
             bool a = true;
             while (a)

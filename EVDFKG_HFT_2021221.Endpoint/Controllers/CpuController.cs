@@ -1,6 +1,8 @@
-﻿using EVDFKG_HFT_2021221.Logic;
+﻿using EVDFKG_HFT_2021221.Endpoint.Services;
+using EVDFKG_HFT_2021221.Logic;
 using EVDFKG_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +17,12 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
     public class CpuController : ControllerBase
     {
         ICpuLogic icl;
+        private readonly IHubContext<SignalRHub> hub;
 
-        public CpuController(ICpuLogic icl)
+        public CpuController(ICpuLogic icl, IHubContext<SignalRHub> hub)
         {
             this.icl = icl;
+            this.hub = hub;
         }
 
         // GET: /cpu
@@ -40,6 +44,7 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] CPU value)
         {
             icl.Create(value);
+            hub.Clients.All.SendAsync("CPUCreated", value);
         }
 
         // PUT /cpu
@@ -47,13 +52,16 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] CPU value)
         {
             icl.Update(value);
+            hub.Clients.All.SendAsync("CPUUpdated", value);
         }
 
         // DELETE /car/1
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var cpuToDelete=this.icl.ReadOne(id);
             icl.Delete(id);
+            hub.Clients.All.SendAsync("CPUDeleted", cpuToDelete);
         }
     }
 }

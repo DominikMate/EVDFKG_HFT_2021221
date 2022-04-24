@@ -1,0 +1,132 @@
+﻿<Window x:Class="EVDFKG_HFT_2021221.WPFClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EVDFKG_HFT_2021221.WPFClient"
+        mc:Ignorable="d"
+        Title="Motherboard Editor" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="l_mot" Background="LightBlue" MouseDown="l_mot_MouseDown" Content="Motherboard" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" Grid.Column="0"/>
+            <Label x:Name="l_cpu" MouseDown="l_cpu_MouseDown" Content="CPU" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" Grid.Column="1"/>
+            <Label x:Name="l_ram" MouseDown="l_ram_MouseDown" Content="RAM" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" Grid.Column="2"/>
+        </Grid>
+
+        <ListBox x:Name="l2_mot" Visibility="Visible" ItemsSource="{Binding Motherboards}" SelectedItem="{Binding SelectedMotherboard}" Grid.Column="0" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Series}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox x:Name="l2_cpu" Visibility="Hidden" ItemsSource="{Binding Cpus}" SelectedItem="{Binding SelectedCpu}" Grid.Column="0" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Series}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox x:Name="l2_ram" Visibility="Hidden" ItemsSource="{Binding Rams}" SelectedItem="{Binding SelectedRam}" Grid.Column="0" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Series}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid x:Name="mygrid" Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer IsEnabled="True" Visibility="Visible" x:Name="svmot" Grid.Row="0">
+                <StackPanel Visibility="Visible" IsEnabled="True" x:Name="sw_mot">
+                    <Label Content="Series" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedMotherboard.Series }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="Brand" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedMotherboard.Brand }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="Compatible Processors" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedMotherboard.CompatibleProcessors }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="CPU Socket" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedMotherboard.CPUSocket }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="RAM Slot" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedMotherboard.RAMSlot }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="RAM Type" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedMotherboard.RAMType }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="MAX RAM Speed" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedMotherboard.MAXRAMSpeed }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="GPU Interface" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedMotherboard.GPUInterface }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer IsEnabled="False" Visibility="Hidden" x:Name="svcpu" Grid.Row="0">
+                <StackPanel Visibility="Hidden" IsEnabled="False" x:Name="sw_cpu">
+                    <Label Content="Series" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedCpu.Series }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="Brand" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedCpu.Brand }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="CPU Socket" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedCpu.CPUSocket }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="CPU Core " Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedCpu.CPUCore }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="CPU Thread" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedCpu.CPUThread }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="CPU Speed" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedCpu.CPUSpeed }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="RAM Type" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedCpu.RAMType }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer IsEnabled="False" Visibility="Hidden" x:Name="svram" Grid.Row="0">
+                <StackPanel Visibility="Hidden" IsEnabled="False" x:Name="sw_ram">
+                    <Label Content="Series" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedRam.Series }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="Brand" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedRam.Brand }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="RAM Size" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedRam.RAMSize }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="RAM Speed" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedRam.RAMSpeed }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="RAM Type" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedRam.RAMType }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="CAS Latency" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedRam.CASLatency }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                    <Label Content="Part Number" Background="LightBlue" Padding="10" Width="300"/>
+                    <TextBox Text="{Binding SelectedRam.PartNumber }" Padding="10"  Margin="0,0,0,30" Width="300"/>
+                </StackPanel>
+            </ScrollViewer>
+            <StackPanel  IsEnabled="true" Visibility="Visible" x:Name="s_mot" Grid.Row="1">
+                <Button Content="Create Motherboard" Command="{Binding CreateMotherboardCommand}" Margin="10" Padding="10"/>
+                <Button Content="Delete Motherboard" Command="{Binding DeleteMotherboardCommand}" Margin="10" Padding="10"/>
+                <Button Content="Update Motherboard" Command="{Binding UpdateMotherboardCommand}" Margin="10" Padding="10"/>
+            </StackPanel>
+            <StackPanel IsEnabled="False" Visibility="Hidden"  x:Name="s_cpu" Grid.Row="1">
+                <Button Content="Create CPU" Command="{Binding CreateCpuCommand}" Margin="10" Padding="10"/>
+                <Button Content="Delete CPU" Command="{Binding DeleteCpuCommand}" Margin="10" Padding="10"/>
+                <Button Content="Update CPU" Command="{Binding UpdateCpuCommand}" Margin="10" Padding="10"/>
+            </StackPanel>
+            <StackPanel IsEnabled="false" Visibility="Hidden" x:Name="s_ram" Grid.Row="1">
+                <Button Content="Create RAM" Command="{Binding CreateRamCommand}" Margin="10" Padding="10"/>
+                <Button Content="Delete RAM" Command="{Binding DeleteRamCommand}" Margin="10" Padding="10"/>
+                <Button Content="Update RAM" Command="{Binding UpdateRamCommand}" Margin="10" Padding="10"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</Window>

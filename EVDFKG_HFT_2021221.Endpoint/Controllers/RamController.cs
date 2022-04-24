@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EVDFKG_HFT_2021221.Endpoint.Services;
+using Microsoft.AspNetCore.SignalR;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,10 +17,12 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
     public class RamController : ControllerBase
     {
         IRamLogic irl;
+        IHubContext<SignalRHub> hub;
 
-        public RamController(IRamLogic irl)
+        public RamController(IRamLogic irl, IHubContext<SignalRHub> hub)
         {
             this.irl = irl;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -39,6 +43,7 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] RAM value)
         {
             irl.Create(value);
+            hub.Clients.All.SendAsync("RAMCreated", value);
         }
 
 
@@ -46,6 +51,7 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] RAM value)
         {
             irl.Update(value);
+            hub.Clients.All.SendAsync("RAMUpdated", value);
         }
 
 
@@ -53,7 +59,9 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var ramToDelete = this.irl.ReadOne(id);
             irl.Delete(id);
+            hub.Clients.All.SendAsync("RAMDeleted", ramToDelete);
         }
     }
 }
