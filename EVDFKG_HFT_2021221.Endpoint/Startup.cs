@@ -49,7 +49,15 @@ namespace EVDFKG_HFT_2021221.Endpoint
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(x => x
+                .AllowCredentials()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("http://localhost:27079"));
+
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

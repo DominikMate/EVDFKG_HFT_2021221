@@ -56,7 +56,7 @@ namespace EVDFKG_HFT_2021221.Endpoint.Controllers
         {
             var motherboardToDelete = this.iml.ReadOne(id);
             iml.Delete(id);
-            hub.Clients.All.SendAsync("DeletedMotherboard", motherboardToDelete);
+            hub.Clients.All.SendAsync("MotherboardDeleted", motherboardToDelete);
         }
     }
 }

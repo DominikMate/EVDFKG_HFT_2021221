@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CPU UI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>CPU Catalog</h1>
+
+    <div id="formdiv">
+        <label>CPU Series</label>
+        <input type="text" id="cpuseries" />
+        <label>CPU Brand</label>
+        <input type="text" id="cpubrand" />
+        <label>CPU Core</label>
+        <input type="text" id="cpucore" />
+        <label>CPU Socket</label>
+        <input type="text" id="cpusocket" />
+        <label>CPU Speed</label>
+        <input type="text" id="cpuspeed" />
+        <label>CPU Thread</label>
+        <input type="text" id="cputhread" />
+        <label>RAM Type</label>
+        <input type="text" id="ramtype" />
+        <button type="button" onclick="create()">Add CPU</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Brand</th>
+                <th>Cpu core</th>
+                <th>Cpu Id</th>
+                <th>Cpu Socket</th>
+                <th>Cpu Speed</th>
+                <th>Cpu Thread</th>
+                <th>Ram Type</th>
+                <th>Series</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+
+    <h1>Motherboard Catalog</h1>
+
+    <div id="formdiv">
+        <label>Motherboard Series</label>
+        <input type="text" id="motherboardseries" />
+        <label>Motherboard Brand</label>
+        <input type="text" id="motherboardbrand" />
+        <label>Motherboard Compatible Processors</label>
+        <input type="text" id="motherboardcompatiblerocessors" />
+        <label>Motherboard Cpu-Socket</label>
+        <input type="text" id="motherboardcpusocket" />
+        <label>Motherboard Ram-Slot</label>
+        <input type="text" id="motherboardramslot" />
+        <label>Motherboard RamType</label>
+        <input type="text" id="motherboardramtype" />
+        <label>Motherboard Max ram speed</label>
+        <input type="text" id="motherboardmaxramspeed" />
+        <label>Motherboard Gpu interface</label>
+        <input type="text" id="motherboardgpuinterface" />
+        <button type="button" onclick="create2()">Add Motherboard</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Brand</th>
+                <th>Motherboard Series</th>
+                <th>Motherboard ID</th>
+                <th>Motherboard Compatible Processors</th>
+                <th>Motherboard Cpu-Socket</th>
+                <th>Motherboard Ram-Slot</th>
+                <th>Motherboard RamType</th>
+                <th>Motherboard Max ram speed</th>
+                <th>Motherboard Gpu interface</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea2">
+        </tbody>
+    </table>
+
+    <h1>RAM Catalog</h1>
+
+    <div id="formdiv">
+        <label>RAM Series</label>
+        <input type="text" id="ramseries" />
+        <label>RAM Brand</label>
+        <input type="text" id="rambrand" />
+        <label>RAM Size</label>
+        <input type="text" id="ramsize" />
+        <label>RAM Speed</label>
+        <input type="text" id="ramspeed" />
+        <label>RAM Type</label>
+        <input type="text" id="ramtype" />
+        <label>CAS Latency</label>
+        <input type="text" id="casLatency" />
+        <label>Part Number</label>
+        <input type="text" id="rampartnumber" />
+        <button type="button" onclick="create3()">Add RAM</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>RAM Brand</th>
+                <th>RAM Series</th>
+                <th>RAM ID</th>
+                <th>RAM Size</th>
+                <th>RAM Speed</th>
+                <th>RAM Type</th>
+                <th>CAS Latency</th>
+                <th>Part Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea3">
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>
