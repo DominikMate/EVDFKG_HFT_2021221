@@ -2,38 +2,81 @@
     width: 100%;
 }
 
-table, th, td{
+table, th, td {
     border: 1px solid black;
 }
 
-table{
+table {
     border-collapse: collapse;
 }
 
-th, td{
+th, td {
     padding: 5px;
 }
 
 th {
     background-color: lightblue;
 }
-#formdiv{
+
+#updateformdiv {
+    display: none;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+    #updateformdiv label, button, input {
+        padding: 7px;
+    }
+
+    #updateformdiv label {
+        font-weight: bolder;
+    }
+#updateformdiv2 {
+    display: none;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+    #updateformdiv2 label, button, input {
+        padding: 7px;
+    }
+
+    #updateformdiv2 label {
+        font-weight: bolder;
+    }
+
+#updateformdiv3 {
+    display: none;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+    #updateformdiv3 label, button, input {
+        padding: 7px;
+    }
+
+    #updateformdiv3 label {
+        font-weight: bolder;
+    }
+
+#formdiv {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
 }
 
-#formdiv label, button, input{
-    padding: 7px;
-}
+    #formdiv label, button, input {
+        padding: 7px;
+    }
 
-#formdiv label{
-    font-weight: bolder;
-}
+    #formdiv label {
+        font-weight: bolder;
+    }
 
-table button{
+table button {
     padding: 2px;
 }
-#formdiv button{
+
+#formdiv button {
     margin-top: 10px;
 }
